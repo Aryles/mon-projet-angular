@@ -3,19 +3,32 @@ import { VirtualTimeScheduler } from 'rxjs';
 export class AppareilService {
     appareils = [
         {
-        name: 'Machine a laver',
+        id:1,
+            name: 'Machine a laver',
         status:'éteint'
         },
         {
-          name: 'Télevision',
+          id:2,
+            name: 'Télevision',
           status:'allumé'
           },
           {
+              id:3,
             name: 'Ordinateur',
             status:'éteint'
             }
       
       ];
+
+      getAppareilById(id: number){
+          const appareil = this.appareils.find(
+(appareilObjetct) => {
+    return appareilObjetct.id === id;
+}
+
+          );
+          return appareil;
+      }
 
       switchOnAll(){
           for(let appareil of this.appareils) {

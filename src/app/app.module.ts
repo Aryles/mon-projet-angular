@@ -12,16 +12,35 @@ import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component'; // import des service.
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { AuthGuard } from './services/auth-gard.service';
 
 const appRoutes: Routes = [ // 1- creation des routes 
   {
-    path: 'appareils', component: AppareilViewComponent //ceci veut dire de localhost/appareils charge le component appareil-view  
-  },
+    path: 'appareils',
+  canActivate:[AuthGuard],
+    component: AppareilViewComponent //ceci veut dire de localhost/appareils charge le component appareil-view  
+  
+    },
   {
-    path: 'auth', component: AuthComponent
+    path: 'auth',
+    canActivate:[AuthGuard],
+
+    component: AuthComponent
   },
   {
     path: '', component: AppareilViewComponent
+  },
+  {
+    path: 'appareils/:id', component: SingleAppareilComponent
+  },
+  {
+path:'not-found', component : FourOhFourComponent
+
+  },
+  {
+    path: '**', redirectTo: '/not-found'
   }
 ];
 
@@ -31,7 +50,9 @@ const appRoutes: Routes = [ // 1- creation des routes
     MonPremierComponent,
     AppareilComponent,
     AuthComponent,
-    AppareilViewComponent
+    AppareilViewComponent,
+    SingleAppareilComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +62,8 @@ const appRoutes: Routes = [ // 1- creation des routes
   ],
   providers: [
     AppareilService, // creation de l'instance et injection du service.
-  AuthService
+  AuthService,
+  AuthGuard
   ],
   bootstrap: [AppComponent]
 })
