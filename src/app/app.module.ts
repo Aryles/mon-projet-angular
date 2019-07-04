@@ -7,19 +7,40 @@ import { AppComponent } from './app.component';
 import { MonPremierComponent } from './mon-premier/mon-premier.component';
 import { AppareilComponent } from './appareil/appareil.component';
 import { from } from 'rxjs';
+import {AppareilService} from "./services/appareil.service";
+import { AuthComponent } from './auth/auth.component';
+import { AppareilViewComponent } from './appareil-view/appareil-view.component'; // import des service.
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [ // 1- creation des routes 
+  {
+    path: 'appareils', component: AppareilViewComponent //ceci veut dire de localhost/appareils charge le component appareil-view  
+  },
+  {
+    path: 'auth', component: AuthComponent
+  },
+  {
+    path: '', component: AppareilViewComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MonPremierComponent,
-    AppareilComponent
+    AppareilComponent,
+    AuthComponent,
+    AppareilViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes) // 2- rajout des imports, ceci veut dire de rajouter toute les routes de appRoute.
   ],
-  providers: [],
+  providers: [
+    AppareilService // creation de l'instance et injection du service.
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

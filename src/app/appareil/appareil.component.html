@@ -1,7 +1,16 @@
-<li class="list-group-item">
-    <div style="width: 20px; height: 20px; background-color:red;"
+<li [ngClass]="{'list-group-item': true,
+'list-group-item-success': AppareilStatus === 'allumé',
+'list-group-item-danger' : AppareilStatus === 'éteint'}
+" >
+<!-- carré rouge-->  
+<!-- <div style="width: 20px; height: 20px; background-color:red;"
     *ngIf="AppareilStatus === 'éteint'">
     </div>
-    <h4>Appareil: {{ AppareilName}} -- Status: {{getStatus()}}</h4> 
-<input type="text" class="form-control" [(ngModel)]="AppareilName">
+    
+-->
+    <h4 [ngStyle]="{color: getColor()}" >  Appareil: {{ AppareilName}} -- Status: {{getStatus()}}</h4> 
+    <button style="margin-right: 3px" class="btn btn-success" (click)="onSwitchOn()" [disabled]="AppareilStatus == 'allumé'"> </button>
+    <button class="btn btn-danger" (click)="onSwitchOff()" [disabled]="AppareilStatus == 'éteint'"> </button>
+    <!-- <input type="text" class="form-control" [(ngModel)]="AppareilName"> --> 
+<!--input to change to name of appareil -->
 </li>
