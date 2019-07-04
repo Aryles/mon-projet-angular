@@ -11,6 +11,7 @@ import {AppareilService} from "./services/appareil.service";
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component'; // import des service.
 import { Routes, RouterModule } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [ // 1- creation des routes 
   {
@@ -39,7 +40,8 @@ const appRoutes: Routes = [ // 1- creation des routes
     RouterModule.forRoot(appRoutes) // 2- rajout des imports, ceci veut dire de rajouter toute les routes de appRoute.
   ],
   providers: [
-    AppareilService // creation de l'instance et injection du service.
+    AppareilService, // creation de l'instance et injection du service.
+  AuthService
   ],
   bootstrap: [AppComponent]
 })
