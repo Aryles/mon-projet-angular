@@ -25,15 +25,20 @@ const appRoutes: Routes = [ // 1- creation des routes
     },
   {
     path: 'auth',
-    canActivate:[AuthGuard],
+  
 
     component: AuthComponent
   },
   {
-    path: '', component: AppareilViewComponent
+    path: '', 
+    canActivate:[AuthGuard],
+    component: AppareilViewComponent
   },
   {
-    path: 'appareils/:id', component: SingleAppareilComponent
+    path: 'appareils/:id', 
+    canActivate:[AuthGuard],
+    component: SingleAppareilComponent
+  
   },
   {
 path:'not-found', component : FourOhFourComponent
