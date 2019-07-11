@@ -4,12 +4,19 @@
     <ul class="nav navbar-nav">
       <li routerLinkActive="active"><a routerLink="auth">Authentification</a> </li>
       <li routerLinkActive="active"><a routerLink="appareils">Appareils </a> </li>
-      
+      <li routerLinkActive="active"><a routerLink="edit">Nouvel appareils </a> </li>
+      <li routerLinkActive="active"><a routerLink="users">utilisateurs </a> </li>
+
 <!--
 remplacement de href par routerlink
 chargemet beaucoup plus rapide.
 -->
     </ul>
+    <div class="navbar-right">
+<p>Vous etes connecté depuis {{seconde}} seconde !
+</p>
+
+    </div>
   </div>
 
 </nav>
