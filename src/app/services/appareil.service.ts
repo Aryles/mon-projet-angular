@@ -1,5 +1,7 @@
 import { VirtualTimeScheduler, Subject } from 'rxjs';
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+@Injectable()
 export class AppareilService {
     appareilSubject = new Subject <any[]>();
     private appareils = [
@@ -20,6 +22,7 @@ export class AppareilService {
             }
       
       ];
+      constructor(private httpClient: HttpClient){}
       emitAppareilSubjetct() {
           this.appareilSubject.next(this.appareils.slice())
       }
@@ -73,6 +76,25 @@ this.appareils.push(appareilObjetct);
 this.emitAppareilSubjetct();
 
 
+}
+savaAppareilsToServer(){
+    this.httpClient.put('https://http-client-demo-ca6dd.firebaseio.com/appareils.json', this.appareils).subscribe(()=>{
+        console.log('Enregistrement terminé !');
+    },
+    (error) =>{
+        console.log('Erreur de sauvegarde !' + error);
+    }
+    )
+
+}
+getAppareilFromServer(){
+    this.httpClient.get<any>('https://http-client-demo-ca6dd.firebaseio.com/appareils.json').subscribe((response) => {
+        this.appareils = response;
+        this.emitAppareilSubjetct();
+    },
+    (error) => {
+        console.log('Erreur de chargement !' +error);
+    });
 }
 
 }

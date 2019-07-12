@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import{HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MonPremierComponent } from './mon-premier/mon-premier.component';
@@ -89,6 +89,7 @@ const appRoutes: Routes = [ // 1- creation des routes
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes) // 2- rajout des imports, ceci veut dire de rajouter toute les routes de appRoute.
   ],
   providers: [
